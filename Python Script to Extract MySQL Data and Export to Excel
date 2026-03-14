@@ -1,0 +1,24 @@
+import mysql.connector
+import pandas as pd
+
+# Conexión a MySQL
+conexion = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Alejo2505",
+    database="ventas_costos"
+)
+
+# Consulta SQL
+query = "SELECT * FROM productos"
+
+# Leer la tabla en pandas
+df = pd.read_sql(query, conexion)
+
+# Guardar en Excel
+df.to_excel("productos.xlsx", index=False)
+
+print("Archivo Excel creado correctamente")
+
+# Cerrar conexión
+conexion.close()
